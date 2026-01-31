@@ -2,8 +2,8 @@
 
 SG_ID="sg-07eacdf34d9f96bb3" # replace with your ID
 AMI_ID="ami-0220d79f3f480ecf5"
-ZONE_ID="Z05013202FKF0ZL12WAOP"
-DOMAIN_NAME="daws88s.online"
+ZONE_ID="Z104252710J5M6VMFFMH2"
+DOMAIN_NAME="balaganibalaji.online"
 
 for instance in $@
 do
@@ -61,5 +61,3 @@ do
     echo "record updated for $instance"
 
 done
-
-
