@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 USERID=$(id -u)
@@ -42,4 +41,5 @@ VALIDATE $? "Allowing remote connections"
 
 systemctl restart mongod
 VALIDATE $? "Restarted MongoDB"
+
 
