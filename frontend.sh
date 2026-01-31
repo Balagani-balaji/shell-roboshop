@@ -25,7 +25,7 @@ VALIDATE(){
 }
 
 dnf disable ngnix -y &>>$LOGS_FILE
-VALIDATE $? "disableing ngnix default version"
+VALIDATE $? "Disabling ngnix Default Version"
 
 dnf enable ngnix:1.24 -y &>>$LOGS_FILE
 VALIDATE $? "Enable ngnix"
