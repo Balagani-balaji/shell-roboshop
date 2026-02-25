@@ -8,7 +8,7 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 SCRIPT_DIR=$PWD
-MONGODB_HOST=mongodb.daws88s.online
+MONGODB_HOST=mongodb.balaganibalaji.online
 
 if [ $USERID -ne 0 ]; then
     echo -e "$R Please run this script with root user access $N" | tee -a $LOGS_FILE
@@ -28,6 +28,7 @@ VALIDATE(){
 
 dnf module disable nginx -y &>>$LOGS_FILE
 dnf module enable nginx:1.24 -y &>>$LOGS_FILE
+
 dnf install nginx -y &>>$LOGS_FILE
 VALIDATE $? "Installing Nginx"
 
@@ -35,7 +36,7 @@ systemctl enable nginx  &>>$LOGS_FILE
 systemctl start nginx 
 VALIDATE $? "Enabled and started nginx"
 
-rm -rf /usr/share/nginx/html/* 
+rm -rf /usr/share/nginx/html/*
 VALIDATE $? "Remove default content"
 
 curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip &>>$LOGS_FILE
