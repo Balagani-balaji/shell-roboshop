@@ -1,3 +1,4 @@
+
 #!/bin/bash
 
 USERID=$(id -u)
@@ -7,6 +8,8 @@ R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
+SCRIPT_DIR=$PWD
+MONGODB_HOST=mongodb.daws88s.online
 
 if [ $USERID -ne 0 ]; then
     echo -e "$R Please run this script with root user access $N" | tee -a $LOGS_FILE
@@ -24,21 +27,27 @@ VALIDATE(){
     fi
 }
 
-dnf  module disable ngnix -y &>>$LOGS_FILE
-VALIDATE $? "Module Disabling ngnix Default Version"
+dnf module disable nginx -y &>>$LOGS_FILE
+dnf module enable nginx:1.24 -y &>>$LOGS_FILE
+dnf install nginx -y &>>$LOGS_FILE
+VALIDATE $? "Installing Nginx"
 
-dnf enable ngnix:1.24 -y &>>$LOGS_FILE
-VALIDATE $? "Enable ngnix"
+systemctl enable nginx  &>>$LOGS_FILE
+systemctl start nginx 
+VALIDATE $? "Enabled and started nginx"
 
-dnf install ngnix -y &>>$LOGS_FILE
-VALIDATE $? "Installing ngnix server"
+rm -rf /usr/share/nginx/html/* 
+VALIDATE $? "Remove default content"
 
-systemctl enable ngnix &>>$LOGS_FILE
-VALIDATE $? "Enable ngnix"
+curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip &>>$LOGS_FILE
+cd /usr/share/nginx/html 
+unzip /tmp/frontend.zip &>>$LOGS_FILE
+VALIDATE $? "Downloaded and unzipped frontend"
 
-systemctl start ngnix &>>$LOGS_FILE
-VALIDATE $? "Start ngnix"
+rm -rf /etc/nginx/nginx.conf
 
+cp $SCRIPT_DIR/nginx.conf /etc/nginx/nginx.conf
+VALIDATE $? "Copied our nginx conf file"
 
-
-
+systemctl restart nginx
+VALIDATE $? "Restarted Nginx"
