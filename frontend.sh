@@ -51,4 +51,3 @@ VALIDATE $? "Copied our nginx conf file"
 
 systemctl restart nginx
 VALIDATE $? "Restarted Nginx"
-
