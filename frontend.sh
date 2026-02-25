@@ -40,3 +40,4 @@ systemctl start ngnix &>>$LOGS_FILE
 VALIDATE $? "Start ngnix"
 
 
+
