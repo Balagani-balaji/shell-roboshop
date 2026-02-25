@@ -6,11 +6,11 @@ Description=Payment Service
 User=root
 WorkingDirectory=/app
 // highlight-start
-Environment=CART_HOST=cart.daws88s.online
+Environment=CART_HOST=cart.balaganibalaji.online
 Environment=CART_PORT=8080
-Environment=USER_HOST=user.daws88s.online
+Environment=USER_HOST=user.balaganibalaji.online
 Environment=USER_PORT=8080
-Environment=AMQP_HOST=rabbitmq.daws88s.online
+Environment=AMQP_HOST=rabbitmq.balaganibalaji.online
 // highlight-end
 Environment=AMQP_USER=roboshop
 Environment=AMQP_PASS=roboshop123
