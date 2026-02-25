@@ -9,7 +9,7 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 SCRIPT_DIR=$PWD
-MONGODB_HOST=mongodb.daws88s.online
+MONGODB_HOST=mongodb.balaganibalaji.online
 
 if [ $USERID -ne 0 ]; then
     echo -e "$R Please run this script with root user access $N" | tee -a $LOGS_FILE
@@ -51,3 +51,4 @@ VALIDATE $? "Copied our nginx conf file"
 
 systemctl restart nginx
 VALIDATE $? "Restarted Nginx"
+
